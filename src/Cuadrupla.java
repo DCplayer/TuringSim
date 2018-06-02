@@ -48,6 +48,14 @@ public class Cuadrupla {
         this.estadoFinal = estadoFinal;
     }
 
+    public int getRepeticion() {
+        return repeticion;
+    }
+
+    public void setRepeticion(int repeticion) {
+        this.repeticion = repeticion;
+    }
+
     public boolean compare(int estadoI, String lec, String act, int estadoF){
         if((estadoI== estadoInicial) &&(lec.equals(lectura)) && (accion.equals(act))&&(estadoF == estadoFinal)){
             return true;

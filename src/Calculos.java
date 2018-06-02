@@ -9,8 +9,10 @@ public class Calculos {
     private int estadoActual;
     private int cabezal;
 
-    public Calculos(ArrayList<Estado> maquina) {
+    public Calculos(ArrayList<Estado> maquina, ArrayList<Integer> indices, int estadoActual) {
         this.maquina = maquina;
+        this.indices = indices;
+        this.estadoActual = estadoActual;
     }
 
     public void movimientoCuadrupla(String lectura){
@@ -33,10 +35,9 @@ public class Calculos {
 
                 String descripcionInstantantea = "--" + x.getEstadoInicial() + " " + x.getLectura()+ " " +
                                                 x.getAccion() + " " + x.getEstadoFinal()+ " ";
-                System.out.println(input);
+                System.out.println(descripcionInstantantea + "\n" +input + "\n\n");
                 tomarAccion(x.getAccion(), input);
                 estadoActual = x.getEstadoFinal();
-                break;
             }
         }
     }
