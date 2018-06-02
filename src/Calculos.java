@@ -22,24 +22,33 @@ public class Calculos {
             String s= new String(lectura.charAt(i) +"");
             input.add(s);
         }
+        boolean ruler = true;
 
-        //Que hace cada estado? El estado es el conjunto de cuadruplas que comienzan con ese estado. De tal forma que
-        // Podemos buscar por ID el estado para obtener las posibles cuadruplas
-        int indiceEstado = indices.indexOf(estadoActual);
-        Estado extraccionData = maquina.get(indiceEstado);
-        String actualPosition = input.get(cabezal);
+        while(ruler){
+            //Que hace cada estado? El estado es el conjunto de cuadruplas que comienzan con ese estado. De tal forma que
+            // Podemos buscar por ID el estado para obtener las posibles cuadruplas
+            int indiceEstado = indices.indexOf(estadoActual);
+            Estado extraccionData = maquina.get(indiceEstado);
+            String actualPosition = input.get(cabezal);
 
-        for (Cuadrupla x: extraccionData.getCuadruplas()){
-            //Verificar si el ID es el ingresado
-            if(x.getLectura().equals(actualPosition)){
+            for (Cuadrupla x: extraccionData.getCuadruplas()){
+                //Verificar si el ID es el ingresado
+                if(x.getLectura().equals(actualPosition)){
 
-                String descripcionInstantantea = "--" + x.getEstadoInicial() + " " + x.getLectura()+ " " +
-                                                x.getAccion() + " " + x.getEstadoFinal()+ " ";
-                System.out.println(descripcionInstantantea + "\n" +input + "\n\n");
-                tomarAccion(x.getAccion(), input);
-                estadoActual = x.getEstadoFinal();
+                    String descripcionInstantantea = "--q" + x.getEstadoInicial() + " " + x.getLectura()+ " " +
+                            x.getAccion() + " q" + x.getEstadoFinal()+ " ";
+                    System.out.println(descripcionInstantantea + "\n" +input + "\n");
+                    tomarAccion(x.getAccion(), input);
+                    System.out.println(input + "\n\n");
+                    x.setRepeticion(x.getRepeticion() + 1 );
+                    if(x.getRepeticion() >= 10){
+                        ruler = false;
+                    }
+                    estadoActual = x.getEstadoFinal();
+                }
             }
         }
+
     }
 
     public void  tomarAccion(String accion, ArrayList<String> data){
